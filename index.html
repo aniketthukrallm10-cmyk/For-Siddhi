@@ -109,31 +109,32 @@
   const by       = params.get('by')       || 'Aniket';
   document.getElementById('herName').textContent = herName;
 
-  // -------- 20 things (your exact lines) --------
-  const reasons = [
-    'How pretty you are',
-    'The fact that you feel like home.',
-    'How dedicated you are to your goals.',
-    'How you come to me for help and support when you need it 😁.',
-    'How despite being ill treated by people, you\\'re still a good person.',
-    'How genuine you are.',
-    'Your music taste. I know yeh contradictory hai but I feel like your taste is actually perfect to compliment mine.',
-    'Your breasticles',
-    'Your 2.5 hugs',
-    'Your peck on the cheek',
-    'The fact that you\\'re exclusive about stuff.',
-    'I like the fact that you stayed with me even though i was a jerk for so long.',
-    'Your smile and laugh.',
-    'The fact that you\\'re so talented.',
-    'Your handwriting.',
-    'How you are with coco.',
-    'Your creativity and ability to make gifts, its actually insane.',
-    'How you act around me 🤣, its so cute sometimes.',
-    'Your ability to always try and stay positive and happy (i know mere saath you show your vulnerable side also but still).',
-    'The fact that you could be mine for potentially 49 more years.'
-  ];
-  const reasonsEl = document.getElementById('reasons');
-  reasons.forEach(t => { const li=document.createElement('li'); li.textContent=t; reasonsEl.appendChild(li); });
+// -------- 20 things (your exact lines) --------
+const reasons = [
+  "How pretty you are",
+  "The fact that you feel like home.",
+  "How dedicated you are to your goals.",
+  "How you come to me for help and support when you need it 😁.",
+  "How despite being ill treated by people, you're still a good person.",
+  "How genuine you are.",
+  "Your music taste. I know yeh contradictory hai but I feel like your taste is actually perfect to compliment mine.",
+  "Your breasticles",
+  "Your 2.5 hugs",
+  "Your peck on the cheek",
+  "The fact that you're exclusive about stuff.",
+  "I like the fact that you stayed with me even though i was a jerk for so long.",
+  "Your smile and laugh.",
+  "The fact that you're so talented.",
+  "Your handwriting.",
+  "How you are with coco.",
+  "Your creativity and ability to make gifts, its actually insane.",
+  "How you act around me 🤣, its so cute sometimes.",
+  "Your ability to always try and stay positive and happy (i know mere saath you show your vulnerable side also but still).",
+  "The fact that you could be mine for potentially 49 more years."
+];
+const reasonsEl = document.getElementById('reasons');
+reasons.forEach(t => { const li=document.createElement('li'); li.textContent=t; reasonsEl.appendChild(li); });
+
 
   // -------- Random photo generator (needs /img/s1..s10.jpg) --------
   const existing = []; // we’ll attempt to load all 10 and keep the ones that exist
