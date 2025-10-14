@@ -1,209 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>For Siddhi 💗</title>
-  <meta name="description" content="A tiny birthday web app for Siddhi — notes, memories, music, and confetti." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><text x=%2250%25%22 y=%2255%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2224%22>💗</text></svg>">
   <style>
-    :root{
-      --bg1:#f8f9fb; --bg2:#f2f2f7;
-      --ink:#1f2328; --muted:#666a73;
-      --card:#ffffffcc; --stroke:#e6e7eb;
-      --accent:#ff4d6d; --accent2:#ff8fab;
-    }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial; color:var(--ink); background:linear-gradient(135deg,var(--bg1),var(--bg2))}
-    .wrap{max-width:980px; margin:0 auto; padding:20px 16px 64px}
-    header{border-radius:24px; background:var(--card); padding:24px; backdrop-filter: blur(8px); box-shadow:0 10px 30px rgba(0,0,0,.07); display:grid; gap:14px; place-items:center; text-align:center; border:1px solid var(--stroke)}
-    h1{font-size:clamp(28px,6vw,44px); margin:0} .sub{color:var(--muted)}
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
-    .grid{display:grid; gap:18px; margin-top:18px} @media (min-width:760px){ .grid{grid-template-columns:repeat(12,1fr)} }
-    .card{grid-column:1/-1; border-radius:20px; background:var(--card); padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.06); border:1px solid var(--stroke)}
-    .card h2{margin:0 0 8px; font-size:clamp(20px,3.5vw,28px)} .lead{color:var(--muted); margin:6px 0 14px}
-    .two{grid-column:1/-1} @media (min-width:760px){ .two{grid-column:span 6} }
-    .btn{cursor:pointer; border:0; padding:12px 16px; border-radius:14px; background:var(--accent); color:white; font-weight:700; transition:transform .03s ease, box-shadow .2s, background .2s; box-shadow:0 8px 20px rgba(255,77,109,.35)}
-    .btn:active{transform:translateY(1px)} .ghost{background:#fff; color:var(--accent); border:2px solid var(--accent)} .muted{background:#fff; color:#333; border:1px solid var(--stroke)}
-    .small{font-size:13px; color:var(--muted)}
-    .love{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-    .love li{border:1px dashed #ffb3c1; background:#fff; border-radius:14px; padding:12px 12px; box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    .viewer{display:grid; place-items:center; gap:14px}
-    .viewer img{max-width:100%; width:min(640px,100%); border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,.12); border:1px solid var(--stroke); background:#fff}
-    input[type="text"], input[type="number"]{font-size:16px; padding:10px 12px; border-radius:10px; border:1px solid var(--stroke); outline:none; background:#fff; width:160px}
+    :root{--bg1:#f8f9fb;--bg2:#f2f2f7;--ink:#1f2328;--muted:#666a73;--card:#ffffff;--stroke:#e6e7eb;--accent:#ff4d6d;}
+    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--ink)}
+    .wrap{max-width:980px;margin:0 auto;padding:20px 14px 60px}
+    header,.card{background:var(--card);border:1px solid var(--stroke);border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    header{padding:24px;text-align:center}
+    h1{margin:0;font-size:clamp(28px,6vw,44px)} .sub{color:var(--muted);margin:6px 0 0}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+    .btn{cursor:pointer;border:0;padding:12px 16px;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;box-shadow:0 8px 20px rgba(255,77,109,.35)}
+    .ghost{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+    .grid{display:grid;gap:18px;margin-top:18px} @media(min-width:760px){.grid{grid-template-columns:repeat(12,1fr)}}
+    .two{grid-column:1/-1}@media(min-width:760px){.two{grid-column:span 6}}
+    .card{padding:18px}
+    .card h2{margin:0 0 10px}
+    .lead{color:var(--muted);margin:6px 0 12px}
+    .love{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+    .love li{border:1px dashed #ffb3c1;background:#fff;border-radius:14px;padding:12px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    input[type="text"],input[type="number"]{font-size:16px;padding:10px 12px;border:1px solid var(--stroke);border-radius:10px}
     .hidden{display:none}
-    #confetti{position:fixed; inset:0; pointer-events:none}
+    .viewer{display:grid;place-items:center;gap:12px}
+    .viewer img{max-width:100%;width:min(640px,100%);border-radius:16px;border:1px solid var(--stroke);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+    .small{color:var(--muted);font-size:13px}
   </style>
 </head>
 <body>
-<canvas id="confetti"></canvas>
+  <div class="wrap">
+    <header>
+      <h1>For <span id="herName">Siddhi Saklani</span> 💗</h1>
+      <p class="sub">thodi stronger koshish ki hai</p>
+      <div class="row" style="margin-top:8px">
+        <button class="btn" id="confettiBtn">Launch confetti 🎉</button>
+        <button class="btn ghost" id="addHome">Add to Home Screen (iPhone)</button>
+      </div>
+    </header>
 
-<div class="wrap">
-  <header>
-    <h1 id="hero">For <span id="herName">Siddhi Saklani</span> 💗</h1>
-    <p class="sub" id="tagline">thodi stronger koshish ki hai</p>
-    <div class="row">
-      <button class="btn" id="confettiBtn">Launch confetti 🎉</button>
-      <button class="btn ghost" id="addHome">Add to Home Screen (iPhone)</button>
+    <div class="grid">
+      <section class="card two">
+        <h2>20 things I adore about you 💌</h2>
+        <p class="lead">
+          Hi Siddhi Jabulani (its a football go look it up)<br><br>
+          HAPPY BIRTHDAY TO THE MOST GORGEOUS GIRL OF ALL TIME + SEXY (MGGGOAT+S). You're 20 now and here are 18+2=20 things I still like abut you.
+        </p>
+        <ul class="love" id="reasons"></ul>
+      </section>
+
+      <section class="card two">
+        <h2>Photo Gallery 📸</h2>
+        <p class="lead">my 10 fav pics of u (I lost our old pics when I change phones)</p>
+        <div class="viewer">
+          <div class="row" id="pinRow">
+            <input id="pin" inputmode="numeric" pattern="[0-9]*" placeholder="Enter PIN (1410)"/>
+            <button class="btn" id="unlock">Unlock</button>
+          </div>
+          <div class="row hidden" id="randRow">
+            <button class="btn" id="showOne">Show random photo ⟳</button>
+          </div>
+          <img id="randImg" alt="random memory" class="hidden"/>
+          <div id="hint" class="small">Put images in <code>img/s1.jpg..s10.jpg</code> (exact names).</div>
+        </div>
+      </section>
+
+      <section class="card two">
+        <h2>Soundtrack 🎶</h2>
+        <p class="lead">Tap to start (mobile browsers require a tap).</p>
+        <div class="row" style="margin-bottom:10px">
+          <button class="btn" id="startMusic">Start the music ▶️</button>
+          <a class="btn ghost" target="_blank" id="openSpotify" href="https://open.spotify.com/playlist/1PcjYxcikE7fCuWIvKDQcc?si=660791f494434079">Open in Spotify</a>
+        </div>
+        <div id="player"></div>
+        <p class="small">Spotify embeds may play previews unless logged in. We can switch to full local MP3s next.</p>
+      </section>
     </div>
-  </header>
-
-  <div class="grid">
-    <!-- 20 things -->
-    <section class="card two">
-      <h2>20 things I adore about you 💌</h2>
-      <p class="lead" id="customMsg">
-        Hi Siddhi Jabulani (its a football go look it up)<br><br>
-        HAPPY BIRTHDAY TO THE MOST GORGEOUS GIRL OF ALL TIME + SEXY (MGGGOAT+S). You're 20 now and here are 18+2=20 things I still like abut you.
-      </p>
-      <ul class="love" id="reasons"></ul>
-    </section>
-
-    <!-- Random photo generator (PIN-gated) -->
-    <section class="card two">
-      <h2>Photo Gallery 📸</h2>
-      <p class="lead">my 10 fav pics of u (I lost our old pics when I change phones)</p>
-
-      <div class="viewer">
-        <div class="row" id="pinRow">
-          <input id="pin" inputmode="numeric" pattern="[0-9]*" placeholder="Enter PIN (1410)" />
-          <button class="btn" id="unlock">Unlock</button>
-        </div>
-
-        <div class="row hidden" id="randRow">
-          <button class="btn" id="showOne">Show random photo ⟳</button>
-        </div>
-
-        <img id="randImg" alt="random memory" class="hidden" />
-        <div id="hint" class="small">Pics should be at <code>/img/s1.jpg ... s10.jpg</code> (optional).</div>
-      </div>
-    </section>
-
-    <!-- Music -->
-    <section class="card two">
-      <h2>Soundtrack 🎶</h2>
-      <p class="lead">Tap once to start music (iPhone requires a tap).</p>
-      <div id="player"></div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn" id="startMusic">Start the music ▶️</button>
-      </div>
-      <p class="small">Uses your Spotify playlist. (Autoplay with sound is blocked on most browsers until you tap.)</p>
-    </section>
-
-    <!-- Share -->
-    <section class="card two">
-      <h2>Share this page 🔗</h2>
-      <p class="lead">Make it yours, then copy a clean link.</p>
-      <button class="btn" id="copy">Copy link with your settings</button>
-      <div id="shareUrl" class="small" style="word-break:break-all; margin-top:8px"></div>
-    </section>
   </div>
-</div>
 
-<script>
-  // -------- params / personalization --------
-  const params   = new URLSearchParams(location.search);
-  const herName  = params.get('name')     || 'Siddhi Saklani';
-  const pinCode  = '1410';
-  const playlist = params.get('playlist') || 'https://open.spotify.com/playlist/1PcjYxcikE7fCuWIvKDQcc?si=660791f494434079';
-  const by       = params.get('by')       || 'Aniket';
-  document.getElementById('herName').textContent = herName;
+  <script>
+    // --- Personalization from URL (optional) ---
+    const q = new URLSearchParams(location.search);
+    const herName = q.get("name") || "Siddhi Saklani";
+    document.getElementById("herName").textContent = herName;
 
-// -------- 20 things (your exact lines) --------
-const reasons = [
-  "How pretty you are",
-  "The fact that you feel like home.",
-  "How dedicated you are to your goals.",
-  "How you come to me for help and support when you need it 😁.",
-  "How despite being ill treated by people, you're still a good person.",
-  "How genuine you are.",
-  "Your music taste. I know yeh contradictory hai but I feel like your taste is actually perfect to compliment mine.",
-  "Your breasticles",
-  "Your 2.5 hugs",
-  "Your peck on the cheek",
-  "The fact that you're exclusive about stuff.",
-  "I like the fact that you stayed with me even though i was a jerk for so long.",
-  "Your smile and laugh.",
-  "The fact that you're so talented.",
-  "Your handwriting.",
-  "How you are with coco.",
-  "Your creativity and ability to make gifts, its actually insane.",
-  "How you act around me 🤣, its so cute sometimes.",
-  "Your ability to always try and stay positive and happy (i know mere saath you show your vulnerable side also but still).",
-  "The fact that you could be mine for potentially 49 more years."
-];
-const reasonsEl = document.getElementById('reasons');
-reasons.forEach(t => { const li=document.createElement('li'); li.textContent=t; reasonsEl.appendChild(li); });
+    // --- 20 things list (double-quoted for safety) ---
+    const reasons = [
+      "How pretty you are",
+      "The fact that you feel like home.",
+      "How dedicated you are to your goals.",
+      "How you come to me for help and support when you need it 😁.",
+      "How despite being ill treated by people, you're still a good person.",
+      "How genuine you are.",
+      "Your music taste. I know yeh contradictory hai but I feel like your taste is actually perfect to compliment mine.",
+      "Your breasticles",
+      "Your 2.5 hugs",
+      "Your peck on the cheek",
+      "The fact that you're exclusive about stuff.",
+      "I like the fact that you stayed with me even though i was a jerk for so long.",
+      "Your smile and laugh.",
+      "The fact that you're so talented.",
+      "Your handwriting.",
+      "How you are with coco.",
+      "Your creativity and ability to make gifts, its actually insane.",
+      "How you act around me 🤣, its so cute sometimes.",
+      "Your ability to always try and stay positive and happy (i know mere saath you show your vulnerable side also but still).",
+      "The fact that you could be mine for potentially 49 more years."
+    ];
+    const ul = document.getElementById("reasons");
+    reasons.forEach(t => { const li=document.createElement("li"); li.textContent=t; ul.appendChild(li); });
 
+    // --- Simple confetti (very light) ---
+    document.getElementById("confettiBtn").onclick = () => {
+      for (let i=0;i<120;i++){
+        const s=document.createElement("span");
+        s.style.position="fixed"; s.style.top="-10px"; s.style.left=(Math.random()*100)+"vw";
+        s.style.width=s.style.height=(Math.random()*6+4)+"px";
+        s.style.background=["#ff4d6d","#f9c74f","#90be6d","#577590","#f8961e","#43aa8b"][Math.random()*6|0];
+        s.style.borderRadius="2px"; s.style.transform=`rotate(${Math.random()*360}deg)`;
+        s.style.pointerEvents="none"; s.style.zIndex="9999";
+        document.body.appendChild(s);
+        const dur= (Math.random()*1.2+1.2) + "s";
+        s.animate([{transform:s.style.transform, top:"-10px"},{transform:`${s.style.transform} translateY(100vh)`, top:"100vh"}],
+                  {duration: parseFloat(dur)*1000, easing:"linear"}).onfinish=()=>s.remove();
+      }
+    };
 
-<script>
-// ---- Random photo generator (no preload; cache-proof) ----
-const candidates = Array.from({length: 10}, (_, i) => `img/s${i+1}.jpg`);
-const pinRow  = document.getElementById('pinRow');
-const randRow = document.getElementById('randRow');
-const randImg = document.getElementById('randImg');
+    // --- Photo Gallery (PIN + random) ---
+    const candidates = Array.from({length:10}, (_,i)=> `img/s${i+1}.jpg`);
+    const pinRow  = document.getElementById("pinRow");
+    const randRow = document.getElementById("randRow");
+    const randImg = document.getElementById("randImg");
+    document.getElementById("unlock").onclick = () => {
+      const val = (document.getElementById("pin").value || "").trim();
+      if (val === "1410") { pinRow.classList.add("hidden"); randRow.classList.remove("hidden"); }
+      else alert("Almost — try 1410 🙂");
+    };
+    document.getElementById("showOne").onclick = () => {
+      const pick = candidates[Math.floor(Math.random()*candidates.length)] + `?v=${Date.now()}`;
+      randImg.onload = ()=> randImg.classList.remove("hidden");
+      randImg.onerror = ()=> alert("Could not load image. Check img/s1.jpg..s10.jpg");
+      randImg.src = pick;
+    };
 
-document.getElementById('unlock').onclick = () => {
-  const val = (document.getElementById('pin').value || '').trim();
-  if (val === '1410') {
-    pinRow.classList.add('hidden');
-    randRow.classList.remove('hidden');
-    confettiBurst(120);
-  } else {
-    alert('Almost — try 1410 🙂');
-  }
-};
-
-function showRandom() {
-  if (!candidates.length) {
-    alert('Add photos to img/s1.jpg..s10.jpg and refresh');
-    return;
-  }
-  // Pick one and bust cache so new uploads show immediately
-  const pick = candidates[Math.floor(Math.random() * candidates.length)] + `?v=${Date.now()}`;
-  randImg.onload = () => randImg.classList.remove('hidden');
-  randImg.onerror = () => alert('Could not load image. Check that img/s1.jpg..s10.jpg exist.');
-  randImg.src = pick;
-}
-document.getElementById('showOne').onclick = showRandom;
-</script>
-
-  // -------- Music (tap-to-start) --------
-  const player = document.getElementById('player');
-  function loadSpotify(){
-    player.innerHTML='';
-    if(playlist){
-      const iframe = document.createElement('iframe');
-      iframe.style.borderRadius='12px';
-      iframe.width='100%'; iframe.height='352';
-      iframe.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-      iframe.src = playlist.replace('open.spotify.com/','open.spotify.com/embed/');
+    // --- Spotify embed (tap to start) ---
+    document.getElementById("startMusic").onclick = () => {
+      const player = document.getElementById("player");
+      player.innerHTML = "";
+      const iframe = document.createElement("iframe");
+      iframe.style.borderRadius = "12px";
+      iframe.width="100%"; iframe.height="352";
+      iframe.allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+      iframe.src="https://open.spotify.com/embed/playlist/1PcjYxcikE7fCuWIvKDQcc?utm_source=generator";
       player.appendChild(iframe);
-    }
-  }
-  document.getElementById('startMusic').onclick = loadSpotify;
+    };
 
-  // -------- Share link with current settings --------
-  document.getElementById('copy').onclick = ()=>{
-    const url = new URL(location.href); url.search = '';
-    const set=(k,v)=>{ if(v) url.searchParams.set(k,v) };
-    set('name', herName); set('by', by); set('playlist', playlist);
-    const out = url.toString(); navigator.clipboard?.writeText(out);
-    document.getElementById('shareUrl').textContent = out;
-  };
-
-  // -------- Add to Home Screen helper --------
-  document.getElementById('addHome').onclick = ()=>{
-    alert('On iPhone: • Tap the share icon • “Add to Home Screen”.');
-  };
-
-  // -------- Confetti --------
-  const cvs = document.getElementById('confetti'); const ctx = cvs.getContext('2d');
-  let W,H; let pieces=[]; const colors=['#ff4d6d','#f9c74f','#90be6d','#577590','#f8961e','#43aa8b'];
-  function resize(){ W=cvs.width=innerWidth; H=cvs.height=innerHeight; } addEventListener('resize',resize); resize();
-  function spawn(n){ for(let i=0;i<n;i++){ pieces.push({x:Math.random()*W,y:-20,r:Math.random()*8+4,c:colors[Math.random()*colors.length|0],vy:Math.random()*2+2,vx:(Math.random()-0.5)*2,rot:Math.random()*Math.PI,vr:(Math.random()-0.5)*0.2}) } }
-  function step(){ ctx.clearRect(0,0,W,H); for(const p of pieces){ p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.c; ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r); ctx.restore(); } pieces = pieces.filter(p=>p.y<H+30); requestAnimationFrame(step); }
-  step(); function confettiBurst(n=120){ spawn(n); } document.getElementById('confettiBtn').onclick = ()=>confettiBurst(160);
-</script>
+    // --- Add to Home Screen help ---
+    document.getElementById("addHome").onclick = () => {
+      alert("On iPhone: Share icon → Add to Home Screen");
+    };
+  </script>
 </body>
 </html>
