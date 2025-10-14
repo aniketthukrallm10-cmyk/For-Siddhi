@@ -136,38 +136,37 @@ const reasonsEl = document.getElementById('reasons');
 reasons.forEach(t => { const li=document.createElement('li'); li.textContent=t; reasonsEl.appendChild(li); });
 
 
-  // -------- Random photo generator (needs /img/s1..s10.jpg) --------
-  const existing = []; // we’ll attempt to load all 10 and keep the ones that exist
-  const candidates = Array.from({length:10}, (_,i)=>`/img/s${i+1}.jpg`);
-  let loaded = 0;
-  candidates.forEach(src=>{
-    const img = new Image();
-    img.onload = ()=>{ existing.push(src); if(++loaded===candidates.length && existing.length===0){ document.getElementById('hint').textContent='No local images found. You can add /img/s1.jpg..s10.jpg later.'; } };
-    img.onerror = ()=>{ if(++loaded===candidates.length && existing.length===0){ document.getElementById('hint').textContent='No local images found. You can add /img/s1.jpg..s10.jpg later.'; } };
-    img.src = src;
-  });
+<script>
+// ---- Random photo generator (no preload; cache-proof) ----
+const candidates = Array.from({length: 10}, (_, i) => `img/s${i+1}.jpg`);
+const pinRow  = document.getElementById('pinRow');
+const randRow = document.getElementById('randRow');
+const randImg = document.getElementById('randImg');
 
-  const pinRow  = document.getElementById('pinRow');
-  const randRow = document.getElementById('randRow');
-  const randImg = document.getElementById('randImg');
+document.getElementById('unlock').onclick = () => {
+  const val = (document.getElementById('pin').value || '').trim();
+  if (val === '1410') {
+    pinRow.classList.add('hidden');
+    randRow.classList.remove('hidden');
+    confettiBurst(120);
+  } else {
+    alert('Almost — try 1410 🙂');
+  }
+};
 
-  document.getElementById('unlock').onclick = ()=>{
-    const val = (document.getElementById('pin').value||'').trim();
-    if(val === pinCode){
-      pinRow.classList.add('hidden');
-      randRow.classList.remove('hidden');
-      confettiBurst(120);
-    } else {
-      alert('Almost — try 1410 🙂');
-    }
-  };
-
-  document.getElementById('showOne').onclick = ()=>{
-    if(existing.length===0){ alert('Add photos to /img/s1.jpg..s10.jpg and refresh'); return; }
-    const pick = existing[Math.floor(Math.random()*existing.length)];
-    randImg.src = pick;
-    randImg.classList.remove('hidden');
-  };
+function showRandom() {
+  if (!candidates.length) {
+    alert('Add photos to img/s1.jpg..s10.jpg and refresh');
+    return;
+  }
+  // Pick one and bust cache so new uploads show immediately
+  const pick = candidates[Math.floor(Math.random() * candidates.length)] + `?v=${Date.now()}`;
+  randImg.onload = () => randImg.classList.remove('hidden');
+  randImg.onerror = () => alert('Could not load image. Check that img/s1.jpg..s10.jpg exist.');
+  randImg.src = pick;
+}
+document.getElementById('showOne').onclick = showRandom;
+</script>
 
   // -------- Music (tap-to-start) --------
   const player = document.getElementById('player');
