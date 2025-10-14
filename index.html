@@ -3,29 +3,48 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>For Siddhi 💗</title>
+  <title>Siddhi ♥</title>
+  <meta name="apple-mobile-web-app-title" content="Siddhi ♥">
+  <meta name="theme-color" content="#0b0b10">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' font-size='22'>💗</text></svg>">
+
   <style>
-    :root{--bg1:#f8f9fb;--bg2:#f2f2f7;--ink:#1f2328;--muted:#666a73;--card:#ffffff;--stroke:#e6e7eb;--accent:#ff4d6d;}
-    *{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--ink)}
-    .wrap{max-width:980px;margin:0 auto;padding:20px 14px 60px}
-    header,.card{background:var(--card);border:1px solid var(--stroke);border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
-    header{padding:24px;text-align:center}
-    h1{margin:0;font-size:clamp(28px,6vw,44px)} .sub{color:var(--muted);margin:6px 0 0}
+    :root{
+      /* Dark theme */
+      --bg:#0b0b10;
+      --panel:#13141a;
+      --panel-2:#16171f;
+      --stroke:#252634;
+      --ink:#f5f6f8;           /* main text (soft white) */
+      --muted:#a7abb3;         /* grey text */
+      --accent:#ff4d88;        /* hot pink */
+      --accent-2:#ff7aa8;      /* lighter pink */
+      --dashed:#ff9dbf;        /* subtle box borders */
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--ink)}
+    .wrap{max-width:980px;margin:0 auto;padding:20px 14px 64px}
+    header,.card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--stroke);border-radius:22px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+    header{padding:26px;text-align:center}
+    h1{margin:0;font-size:clamp(28px,6vw,44px)}
+    .sub{margin:8px 0 0;color:var(--muted)}
     .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
-    .btn{cursor:pointer;border:0;padding:12px 16px;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;box-shadow:0 8px 20px rgba(255,77,109,.35)}
-    .ghost{background:#fff;color:var(--accent);border:2px solid var(--accent)}
-    .grid{display:grid;gap:18px;margin-top:18px} @media(min-width:760px){.grid{grid-template-columns:repeat(12,1fr)}}
+    .btn{cursor:pointer;border:0;padding:12px 16px;border-radius:14px;background:var(--accent);color:#fff;font-weight:800;letter-spacing:.2px;box-shadow:0 10px 28px rgba(255,77,136,.35);transition:transform .05s ease, filter .2s}
+    .btn:active{transform:translateY(1px)}
+    .ghost{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+    .grid{display:grid;gap:18px;margin-top:18px}
+    @media(min-width:760px){.grid{grid-template-columns:repeat(12,1fr)}}
     .two{grid-column:1/-1}@media(min-width:760px){.two{grid-column:span 6}}
     .card{padding:18px}
     .card h2{margin:0 0 10px}
     .lead{color:var(--muted);margin:6px 0 12px}
     .love{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-    .love li{border:1px dashed #ffb3c1;background:#fff;border-radius:14px;padding:12px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
-    input[type="text"],input[type="number"]{font-size:16px;padding:10px 12px;border:1px solid var(--stroke);border-radius:10px}
+    .love li{border:1px dashed var(--dashed);background:transparent;border-radius:14px;padding:12px}
+    input[type="text"],input[type="number"]{font-size:16px;padding:10px 12px;border:1px solid var(--stroke);border-radius:10px;background:#0f1016;color:var(--ink)}
     .hidden{display:none}
     .viewer{display:grid;place-items:center;gap:12px}
-    .viewer img{max-width:100%;width:min(640px,100%);border-radius:16px;border:1px solid var(--stroke);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-    .small{color:var(--muted);font-size:13px}
+    .viewer img{max-width:100%;width:min(640px,100%);border-radius:16px;border:1px solid var(--stroke);box-shadow:0 16px 36px rgba(0,0,0,.6);background:#0f1016}
+    a{color:var(--accent-2)}
   </style>
 </head>
 <body>
@@ -33,13 +52,14 @@
     <header>
       <h1>For <span id="herName">Siddhi Saklani</span> 💗</h1>
       <p class="sub">thodi stronger koshish ki hai</p>
-      <div class="row" style="margin-top:8px">
+      <div class="row" style="margin-top:10px">
         <button class="btn" id="confettiBtn">Launch confetti 🎉</button>
         <button class="btn ghost" id="addHome">Add to Home Screen (iPhone)</button>
       </div>
     </header>
 
     <div class="grid">
+      <!-- 20 things -->
       <section class="card two">
         <h2>20 things I adore about you 💌</h2>
         <p class="lead">
@@ -49,6 +69,7 @@
         <ul class="love" id="reasons"></ul>
       </section>
 
+      <!-- Photo gallery -->
       <section class="card two">
         <h2>Photo Gallery 📸</h2>
         <p class="lead">my 10 fav pics of u (I lost our old pics when I change phones)</p>
@@ -61,30 +82,29 @@
             <button class="btn" id="showOne">Show random photo ⟳</button>
           </div>
           <img id="randImg" alt="random memory" class="hidden"/>
-          <div id="hint" class="small">Put images in <code>img/s1.jpg..s10.jpg</code> (exact names).</div>
+          <!-- helper text removed per your request -->
         </div>
       </section>
 
+      <!-- Spotify only (helper text removed) -->
       <section class="card two">
         <h2>Soundtrack 🎶</h2>
-        <p class="lead">Tap to start (mobile browsers require a tap).</p>
         <div class="row" style="margin-bottom:10px">
           <button class="btn" id="startMusic">Start the music ▶️</button>
           <a class="btn ghost" target="_blank" id="openSpotify" href="https://open.spotify.com/playlist/1PcjYxcikE7fCuWIvKDQcc?si=660791f494434079">Open in Spotify</a>
         </div>
         <div id="player"></div>
-        <p class="small">Spotify embeds may play previews unless logged in. We can switch to full local MP3s next.</p>
       </section>
     </div>
   </div>
 
   <script>
-    // --- Personalization from URL (optional) ---
+    // Personalization from URL (optional)
     const q = new URLSearchParams(location.search);
     const herName = q.get("name") || "Siddhi Saklani";
     document.getElementById("herName").textContent = herName;
 
-    // --- 20 things list (double-quoted for safety) ---
+    // 20 things list
     const reasons = [
       "How pretty you are",
       "The fact that you feel like home.",
@@ -110,32 +130,34 @@
     const ul = document.getElementById("reasons");
     reasons.forEach(t => { const li=document.createElement("li"); li.textContent=t; ul.appendChild(li); });
 
-    // --- Simple confetti (very light) ---
+    // Confetti (CSS animation, lightweight)
     document.getElementById("confettiBtn").onclick = () => {
-      for (let i=0;i<120;i++){
+      for (let i=0;i<140;i++){
         const s=document.createElement("span");
-        s.style.position="fixed"; s.style.top="-10px"; s.style.left=(Math.random()*100)+"vw";
+        s.style.position="fixed"; s.style.top="-12px"; s.style.left=(Math.random()*100)+"vw";
         s.style.width=s.style.height=(Math.random()*6+4)+"px";
-        s.style.background=["#ff4d6d","#f9c74f","#90be6d","#577590","#f8961e","#43aa8b"][Math.random()*6|0];
+        s.style.background=["#ff4d88","#ffd166","#70e1a1","#5ac8fa","#f78c6b","#cba6ff"][Math.random()*6|0];
         s.style.borderRadius="2px"; s.style.transform=`rotate(${Math.random()*360}deg)`;
         s.style.pointerEvents="none"; s.style.zIndex="9999";
         document.body.appendChild(s);
-        const dur= (Math.random()*1.2+1.2) + "s";
-        s.animate([{transform:s.style.transform, top:"-10px"},{transform:`${s.style.transform} translateY(100vh)`, top:"100vh"}],
-                  {duration: parseFloat(dur)*1000, easing:"linear"}).onfinish=()=>s.remove();
+        const t = (Math.random()*1.2+1.2)*1000;
+        s.animate([{transform:s.style.transform, top:"-12px"},{transform:`${s.style.transform} translateY(100vh)`, top:"100vh"}],
+                  {duration:t, easing:"linear"}).onfinish=()=>s.remove();
       }
     };
 
-    // --- Photo Gallery (PIN + random) ---
+    // Photo gallery (PIN + random)
     const candidates = Array.from({length:10}, (_,i)=> `img/s${i+1}.jpg`);
     const pinRow  = document.getElementById("pinRow");
     const randRow = document.getElementById("randRow");
     const randImg = document.getElementById("randImg");
+
     document.getElementById("unlock").onclick = () => {
       const val = (document.getElementById("pin").value || "").trim();
       if (val === "1410") { pinRow.classList.add("hidden"); randRow.classList.remove("hidden"); }
       else alert("Almost — try 1410 🙂");
     };
+
     document.getElementById("showOne").onclick = () => {
       const pick = candidates[Math.floor(Math.random()*candidates.length)] + `?v=${Date.now()}`;
       randImg.onload = ()=> randImg.classList.remove("hidden");
@@ -143,21 +165,21 @@
       randImg.src = pick;
     };
 
-    // --- Spotify embed (tap to start) ---
+    // Spotify embed (tap to start)
     document.getElementById("startMusic").onclick = () => {
       const player = document.getElementById("player");
       player.innerHTML = "";
       const iframe = document.createElement("iframe");
-      iframe.style.borderRadius = "12px";
+      iframe.style.borderRadius="12px";
       iframe.width="100%"; iframe.height="352";
       iframe.allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
       iframe.src="https://open.spotify.com/embed/playlist/1PcjYxcikE7fCuWIvKDQcc?utm_source=generator";
       player.appendChild(iframe);
     };
 
-    // --- Add to Home Screen help ---
+    // A2HS helper
     document.getElementById("addHome").onclick = () => {
-      alert("On iPhone: Share icon → Add to Home Screen");
+      alert("On iPhone: Share icon → Add to Home Screen. The icon title is set to “Siddhi ♥”.");
     };
   </script>
 </body>
